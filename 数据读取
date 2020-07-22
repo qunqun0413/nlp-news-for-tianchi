@@ -1,0 +1,18 @@
+#读取数据
+import pandas as pd
+import numpy as np
+train_data=pd.read_csv('datalab/72510/train_set.csv',sep='\t',)
+test_data=pd.read_csv('datalab/72510/test_a.csv',sep='\t',)
+#查看列名
+train_data.columns
+#查看数据样式
+train_data.head(10)
+#label的种类
+train_data.label.value_counts()
+#新闻的长度
+#对应的关系为{'科技': 0, '股票': 1, '体育': 2, '娱乐': 3, '时政': 4, '社会': 5, '教育': 6, '财经': 7, '家居': 8, '游戏': 9, '房产': 10, '时尚': 11, '彩票': 12, '星座': 13}
+train_len = train_data['text'].apply(lambda x: len(x.split(' ')))
+train_len.describe()
+from collections import Counter
+#每个新闻主要在讲什么
+train_data['text'].apply(lambda x:Counter(x.split(' ')))
